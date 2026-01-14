@@ -1,0 +1,22 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SukiUiDemo.App"
+             xmlns:local="using:SukiUiDemo"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             RequestedThemeVariant="Light">
+
+    <Application.Styles>
+        <suki:SukiTheme Locale="zh-CN" ThemeColor="Blue"/>
+    </Application.Styles>
+
+      <Application.Resources>
+    <ResourceDictionary>
+      
+      <!--ÑÕÉ«-->
+      <SolidColorBrush x:Key="Infomation" Color="RoyalBlue" />
+      <SolidColorBrush x:Key="Warning" Color="#ffff00" />
+      <SolidColorBrush x:Key="Error" Color="#ce0e0e" />
+
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

@@ -1,0 +1,71 @@
+<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="using:SukiUiDemo.ViewModels"
+        x:Class="SukiUiDemo.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="SukiUiDemo">
+
+<!--    <Design.DataContext>
+        --><!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) --><!--
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>-->
+
+    <suki:SukiWindow.Styles>
+        <!--包含另一个程序集的样式-->
+        <!--<StyleInclude Source="avares://QnDesigner/Controls/FilterTextBox.axaml" />-->
+        <!--跟上面是一样的-->
+        <!--<StyleInclude Source="/Controls/FilterTextBox.axaml" />-->
+    </suki:SukiWindow.Styles>
+
+      <Grid ShowGridLines="False">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+          		<!--内容  真实是SplitView-->
+            <suki:SukiSideMenu Grid.Row="0" IsSearchEnabled="True"
+                           ItemsSource="{Binding Items}"
+                           SelectedItem="{Binding ActivePage}">
+                <suki:SukiSideMenu.ItemTemplate>
+                    <DataTemplate>
+                        <suki:SukiSideMenuItem Classes="Compact" Header="{Binding Label}">
+                        </suki:SukiSideMenuItem>
+                    </DataTemplate>
+                </suki:SukiSideMenu.ItemTemplate>
+                <suki:SukiSideMenu.HeaderContent>
+                    <TextBlock Text="SukiSideMenu-Header"/>
+                </suki:SukiSideMenu.HeaderContent>
+                <suki:SukiSideMenu.FooterContent>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel.Styles>
+                            <Style Selector="Button">
+                                <Setter Property="Command" Value="{Binding OpenUrlCommand}" />
+                            </Style>
+                        </StackPanel.Styles>
+                        <Button Classes="Basic"
+                                CommandParameter="https://github.com/LambdaRan/SukiUiDemo"
+                                ToolTip.Tip="Open On GitHub.">
+                            SukiUiDemo
+                        </Button>
+                        <Button Classes="Basic"
+                                CommandParameter="https://github.com/LambdaRan"
+                                ToolTip.Tip="LambdaRan Github Home">
+                            LambdaRan
+                        </Button>
+                    </StackPanel>
+                </suki:SukiSideMenu.FooterContent>
+             </suki:SukiSideMenu>
+
+        <!--状态栏-->
+        <Panel Grid.Row="1">
+          <Rectangle Fill="{StaticResource Error}" IsVisible="{Binding IsError, Mode=OneWay}"/>
+          <TextBlock Margin="6,4" FontSize="16" TextAlignment="Left" Text="{Binding StatusMessage}" />
+        </Panel>
+      </Grid>
+</suki:SukiWindow>
